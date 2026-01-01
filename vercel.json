@@ -1,18 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && pnpm build",
-  "installCommand": "pnpm install",
   "builds": [
     {
       "src": "backend-project/dist/main.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
     }
   ],
   "routes": [
@@ -22,7 +13,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "dest": "backend-project/dist/main.js"
     }
   ]
 }
