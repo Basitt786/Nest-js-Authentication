@@ -2,11 +2,14 @@
   "name": "fullstack-project",
   "private": true,
   "scripts": {
-    "build": "npm --filter backend build && npm --filter frontend build"
+    "build": "pnpm --filter backend build && pnpm --filter frontend build"
   },
- "engines": {
-  "node": "20.x"
-}
-
+  "engines": {
+    "node": "20.x"
+  },
+  "workspaces": [
+    "backend-project",
+    "frontend"
+  ]
 }
 
