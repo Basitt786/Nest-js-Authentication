@@ -2,10 +2,10 @@ import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ExpressAdapter } from '@nestjs/platform-express';
-import  express from 'express';
+import express from 'express';
 
-// For Vercel serverless
 const expressApp = express();
+const PORT = process.env.PORT || 3000;
 let cachedApp;
 
 async function bootstrap() {
@@ -15,20 +15,19 @@ async function bootstrap() {
       new ExpressAdapter(expressApp)
     );
     
-    // Enable CORS for production
+    // Add global prefix
+    app.setGlobalPrefix('api');
+    
+    // Enable CORS
     app.enableCors({
       origin: process.env.FRONTEND_URL || '*',
       credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
     });
 
     app.useGlobalPipes(
       new ValidationPipe({
         whitelist: true,
         transform: true,
-        forbidNonWhitelisted: true, 
-        disableErrorMessages: false, 
       }),
     );
 
@@ -38,17 +37,17 @@ async function bootstrap() {
   return cachedApp;
 }
 
-// For local development
+// Export for Vercel
+export default async (req, res) => {
+  const app = await bootstrap();
+  return expressApp(req, res);
+};
+
+// For local development only
 if (process.env.NODE_ENV !== 'production') {
   bootstrap().then(() => {
-    expressApp.listen(3000, () => {
-      console.log(`🚀 Backend running on http://localhost:3000`);
+    expressApp.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}/api`);
     });
   });
 }
-
-// Export for Vercel
-export default async (req, res) => {
-  await bootstrap();
-  return expressApp(req, res);
-};
