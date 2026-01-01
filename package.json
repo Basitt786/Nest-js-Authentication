@@ -4,8 +4,9 @@
   "scripts": {
     "build": "pnpm --filter backend build && pnpm --filter frontend build"
   },
-  "engines": {
-  "node": ">=20"
+ "engines": {
+  "node": "20.x"
 }
+
 }
 
