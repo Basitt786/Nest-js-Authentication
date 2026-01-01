@@ -1,0 +1,8 @@
+{
+  "name": "fullstack-project",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter backend build && pnpm --filter frontend build"
+  }
+}
+
