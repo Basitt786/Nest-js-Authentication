@@ -1,12 +1,28 @@
 {
   "version": 2,
-  "installCommand": "pnpm install --recursive",
+  "buildCommand": "pnpm install && pnpm build",
+  "installCommand": "pnpm install",
   "builds": [
-    { "src": "frontend/package.json", "use": "@vercel/next", "config": { "distDir": "build" } },
-    { "src": "backend-project/dist/**/*.js", "use": "@vercel/node" }
+    {
+      "src": "backend-project/dist/main.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "backend-project/dist/$1.js" },
-    { "src": "/(.*)", "dest": "frontend/build/$1" }
+    {
+      "src": "/api/(.*)",
+      "dest": "backend-project/dist/main.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/$1"
+    }
   ]
 }
