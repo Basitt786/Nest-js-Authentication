@@ -1,11 +1,11 @@
 {
   "name": "fullstack-project",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd backend-project && npm run build",
-    "dev": "cd backend-project && npm run dev"
+    "build": "cd backend-project && npm run build"
   },
-  "engines": {
-    "node": "20.x"
+  "dependencies": {
+    "cross-env": "^7.0.3"
   }
 }
