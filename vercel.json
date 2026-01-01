@@ -2,18 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend-project/dist/main.js",
+      "src": "backend-project/src/main.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend-project/dist/main.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "backend-project/dist/main.js"
+      "dest": "backend-project/src/main.ts"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
