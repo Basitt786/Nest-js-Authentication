@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "fullstack-project",
   "private": true,
   "scripts": {
     "vercel-build": "cd backend-project && npm run build"
