@@ -2,7 +2,8 @@
   "name": "fullstack-project",
   "private": true,
   "scripts": {
-    "build": "cd backend-project && pnpm install && pnpm build"
+    "build": "cd backend-project && npm run build",
+    "dev": "cd backend-project && npm run dev"
   },
   "engines": {
     "node": "20.x"

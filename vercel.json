@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend-project/src/main.ts",
+      "src": "backend-project/package.json",
       "use": "@vercel/node"
     }
   ],
@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "backend-project/src/main.ts"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
