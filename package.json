@@ -1,11 +1,7 @@
 {
-  "name": "fullstack-project",
-  "version": "1.0.0",
+  "name": "root",
   "private": true,
   "scripts": {
-    "build": "cd backend-project && npm run build"
-  },
-  "dependencies": {
-    "cross-env": "^7.0.3"
+    "vercel-build": "cd backend-project && npm run build"
   }
 }
